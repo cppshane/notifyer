@@ -1,0 +1,33 @@
+{
+    "name": "Speechify",
+    "version": "1.0",
+    "description": "Set notifications when certain words are spoken in Google Meets.",
+    "permissions": [
+        "declarativeContent", 
+        "storage",
+        "notifications"],
+    "content_scripts": [{
+        "js": ["js/meet.js"],
+        "matches": [ "*://*.meet.google.com/*" ]
+        }],
+    "background": {
+        "scripts": ["js/background.js"],
+        "persistent": true
+      },
+      "page_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "img/logo16.png",
+            "32": "img/logo32.png",
+            "48": "img/logo48.png",
+            "128": "img/logo128.png"
+          }
+      },
+      "icons": {
+        "16": "img/logo16.png",
+        "32": "img/logo32.png",
+        "48": "img/logo48.png",
+        "128": "img/logo128.png"
+      },
+    "manifest_version": 2
+  }

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto+Mono&family=Roboto+Slab:wght@700&display=swap');
+
+      #main-container {
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        height: 250px;
+        border-radius: 10px;
+      }
+
+      #title-container {
+        height: 50px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      #title-container img {
+        width: 25px;
+        height: 25px;
+        align-self: center;
+        margin-right: 10px;
+      }
+
+      h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 21px;
+        height: 100%;
+      }
+
+      #word-list-container {
+        height: 170px;
+        padding: 10px 0px 10px 5px;
+        overflow-y: scroll;
+      }
+
+      #word-list-container ul {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+      }
+
+      #word-list-container li {
+        width: 100%;
+        margin-bottom: 5px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+      }
+
+      #word-list-container p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        margin: 5px 10px 5px 30px;
+        min-height: 12px;
+      }
+
+      .check-image {
+        width: 12px;
+        height: 12px;
+        margin-right: 10px;
+        margin-left: 10px;
+        position: absolute;
+        align-self: center;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .delete-container {
+        background: transparent;
+        height: 100%;
+        width: 25px;
+        position: absolute;
+        right: 0px;
+        margin: 0px;
+        border-radius: 0px 4px 4px 0px;
+        display: flex;
+        justify-content: center;
+        -moz-transition: all .1s ease-in;
+        -o-transition: all .1s ease-in;
+        -webkit-transition: all .1s ease-in;
+        transition: all .1s ease-in;
+      }
+
+      .delete-container:hover {
+        background: rgb(143, 0, 0);
+      }
+
+      .delete-container img {
+        width: 10px;
+        height: 10px;
+        margin: 0px;
+        vertical-align: center;
+        align-self: center;
+      }
+
+      #add-word-container {
+        height: 30px;
+        border-radius: 4px;
+        background-color: #D8D8D8;
+        display: flex;
+        flex-direction: row;
+      }
+
+      #add-word-container input {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        border: none;
+        background: transparent;
+        flex-grow: 1;
+        height: 20px;
+        align-self: center;
+        padding-left: 10px;
+      }
+
+      #submit-container {
+        width: 25px;
+        height: 100%;
+        background:rgb(185, 185, 185);
+        border-radius: 0px 4px 4px 0px;
+        display: flex;
+        justify-content: center;
+        -webkit-transition-property: background;
+        transition-property: background;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        cursor: pointer;
+      }
+
+      #submit-container:hover {
+        background:rgb(0, 189, 9);
+      }
+
+      #add-word-container img {
+        width: 12px;
+        height: 12px;
+        align-self: center;
+      }
+
+      .hvr-sweep-to-right {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        position: relative;
+        -webkit-transition-property: color;
+        transition-property: color;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+      }
+
+      .hvr-sweep-to-right:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 4px;
+        background: #2098D1;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-transform-origin: 0 50%;
+        transform-origin: 0 50%;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+      }
+
+      .hvr-sweep-to-right:hover, .hvr-sweep-to-right:focus, .hvr-sweep-to-right:active {
+        color: white;
+      }
+
+      .hvr-sweep-to-right:hover:before, .hvr-sweep-to-right:focus:before, .hvr-sweep-to-right:active:before {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: rgba(0,0,0,0.3);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: white;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: white;
+      }
+
+      textarea:focus, input:focus{
+        outline: none;
+      }
+
+      *:focus {
+        outline: none;
+      }
+
+      ::-webkit-scrollbar {
+        background: transparent;
+        width: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 8px;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background: #999999;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        border-radius: 8px;
+        background: #636363;
+      }
+
+      input:focus, textarea:focus, select:focus{
+        outline: none;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="title-container">
+        <img src="img/logo48.png">
+        <h1>Speechify</h1>
+      </div>
+      <div id="word-list-container">
+        <ul>
+        </ul>
+      </div>
+      <div id="add-word-container">
+        <input id="submit-input" type="text">
+        <div id="submit-container">
+          <img src="img/check.png">
+        </div>
+      </div>
+    </div>
+
+  <script src="js/popup.js"></script>
+  </body>
+</html>
