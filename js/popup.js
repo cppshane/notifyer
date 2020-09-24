@@ -20,9 +20,9 @@ function generateList() {
     chrome.storage.sync.get(['WordItems'], function(result) {
         wordItems = result.WordItems;
         
-        for (let wordItem of wordItems) {
-            addItemToList(wordItem);
-        }      
+        if (wordItems)
+            for (let wordItem of wordItems)
+                addItemToList(wordItem);
     });
 };
 
@@ -83,9 +83,10 @@ function removeItemFromList(wordItemContent) {
 }
 
 function addWordItem(wordItemContent) {
-    for (let wordItem of wordItems)
-        if (wordItem.content === wordItemContent)
-            return;
+    if (wordItems)
+        for (let wordItem of wordItems)
+            if (wordItem.content === wordItemContent)
+                return;
 
     let newWordItem = {state: '', content: wordItemContent};
 

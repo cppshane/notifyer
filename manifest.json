@@ -1,6 +1,6 @@
 {
     "name": "Speechify",
-    "version": "1.0",
+    "version": "1.1",
     "description": "Set notifications when certain words are spoken in Google Meets.",
     "permissions": [
         "declarativeContent", 
